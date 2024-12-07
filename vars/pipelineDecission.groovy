@@ -16,3 +16,4 @@ switch(application) {
     error "Application is not recognised"
     break
 }
+}
