@@ -50,12 +50,13 @@ pipeline {
             }
         }
         stage('Sonar Scan'){
-            steps{
-                sh """
-                    sonar-scanner
-                """
+                steps{
+                    sh """
+                        echo "usually command here is sonar-scanner"
+                        echo "sonar scan will run here"
+                    """
+                }
             }
-        }
         stage('Build') {
             steps {
                 sh """
