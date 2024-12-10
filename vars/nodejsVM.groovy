@@ -75,12 +75,12 @@ pipeline {
                     nexusUrl: pipelineGlobals.nexusURL(),
                     groupId: 'com.roboshop',
                     version: "${packageVersion}",
-                    repository: 'catalogue',
+                    repository: "${configMap.component}",
                     credentialsId: 'nexus-auth',
                     artifacts: [
-                        [artifactId: 'catalogue',
+                        [artifactId: "${configMap.component}",
                         classifier: '',
-                        file: 'catalogue.zip',
+                        file: "${configMap.component}.zip",
                         type: 'zip']
                     ]
                 )
@@ -97,6 +97,7 @@ pipeline {
                         def params = [
                             string(name: 'version', value: "$packageVersion"),
                             string(name: 'environment', value: "dev")
+                            booleanParam(name: 'Create', value: "${params.Deploy}")
                         ]
                         build job: "../${configMap.component}-deploy", wait: true, parameters: params
                     }
