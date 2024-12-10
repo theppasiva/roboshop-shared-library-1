@@ -98,7 +98,7 @@ pipeline {
                             string(name: 'version', value: "$packageVersion"),
                             string(name: 'environment', value: "dev")
                         ]
-                        build job: "catalogue-deploy", wait: true, parameters: params
+                        build job: "../${configMap.component}-deploy", wait: true, parameters: params
                     }
             }
         }
